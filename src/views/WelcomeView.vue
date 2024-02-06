@@ -15,11 +15,11 @@
 </template>
 
 <script setup>
-import LoginComponent from '@/components/LoginComponent.vue';
-import SignUpComponent from '@/components/SignUpComponent.vue';
+import {LoginComponent, SignUpComponent} from '@/components';
 import { ref } from 'vue';
 
  const showLogin = ref("true");
+
 
 </script>
 
