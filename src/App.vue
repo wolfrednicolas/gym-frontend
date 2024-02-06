@@ -1,6 +1,14 @@
 <template>
+  <NavComponent/>
+  <AlertComponent />
   <router-view/>
 </template>
+
+<script setup>
+import { NavComponent, AlertComponent } from '@/components';
+
+
+</script>
 
 <style>
 #app {
