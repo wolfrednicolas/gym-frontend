@@ -15,7 +15,7 @@ export const useAuthStore = defineStore({
     actions: {
         async login(email, password) {
             const body = {
-                email: email.value, password: password.value
+                email: email, password: password
             }
             console.log(body)
             const requestOptions = {
