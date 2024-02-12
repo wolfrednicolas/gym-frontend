@@ -1,5 +1,5 @@
 <template>
-    <h2>Login</h2>
+    <h2>{{ props.type }}</h2>
     <Form @submit="handleSubmit" :validation-schema="schema" v-slot="{ errors, isSubmitting }">
                 <div class="form-group">
                     <label>email</label>
@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <button class="btn btn-primary" :disabled="isSubmitting">
                         <span v-show="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>
-                        Login
+                        {{ props.type }}
                     </button>
                 </div>
             </Form>
@@ -25,7 +25,10 @@
     import { useAuthStore } from '@/stores';
     import * as Yup from 'yup';
     import { Form, Field } from 'vee-validate';
+    import { defineProps } from 'vue';
 
+    const props = defineProps(['type'])
+    
     const schema = Yup.object().shape({
         email: Yup.string().email().required('Email is required'),
         password: Yup.string().min("6").max("20").required('Password is required')
@@ -33,8 +36,13 @@
         
     const handleSubmit = async (values) =>{
         const authStore = useAuthStore();
-        const { email, password } = values;
-        await authStore.login(email, password);
+        const { email, password, role } = values;
+        if (props.type == 'Login') {
+            await authStore.login(email, password);
+        }else{
+            await authStore.signUp(email, password, role);   
+        }
+        
     }
 </script>
 

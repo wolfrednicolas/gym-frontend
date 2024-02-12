@@ -3,23 +3,23 @@
       <div class="notLogin"> <!--preguntar si esta no esta logueado-->
         <p>Welcome</p>
         <div v-if="showLogin">
-            <LoginComponent />
-            <p>not account yet? <span @click="showLogin = false"><a>SignUp</a></span></p>
+          <LoginSignUpComponent type="Login" />
+          <p>not account yet? <span @click="showLogin = false"><a>SignUp</a></span></p>
         </div>
         <div v-else>
-            <SignUpComponent/>
-            <p>Already have an account <span @click="showLogin = true"><a>Login</a></span></p>
+          <LoginSignUpComponent type="Sign Up"/>
+          <p>Already have an account <span @click="showLogin = true"><a>Login</a></span></p>
         </div>
       </div>  
     </div>
 </template>
 
+
 <script setup>
-import {LoginComponent, SignUpComponent} from '@/components';
+import {LoginSignUpComponent} from '@/components';
 import { ref } from 'vue';
 
  const showLogin = ref("true");
-
 
 </script>
 
