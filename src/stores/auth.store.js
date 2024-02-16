@@ -10,6 +10,7 @@ export const useAuthStore = defineStore({
     state: () => ({
         // initialize state from local storage to enable user to stay logged in
         user_id: JSON.parse(localStorage.getItem('user_id')),
+        role: localStorage.getItem('role'),
         returnUrl: null
     }),
     actions: {
@@ -31,9 +32,19 @@ export const useAuthStore = defineStore({
                 alertStore.error(responseJson.error); 
                 return;
             }
-            localStorage.setItem('user_id', responseJson.data.user_id);
-            localStorage.setItem('role', responseJson.data.role);
-            router.push(this.returnUrl || '/');
+            
+            this.user_id = responseJson.data.user_id;
+            this.role = responseJson.data.role;
+            localStorage.setItem('user_id', this.user_id);
+            localStorage.setItem('role', this.role);
+
+            if(this.role == "ADMIN"){
+                router.push(this.returnUrl || '/admin');
+            }else{
+                router.push(this.returnUrl || '/users');
+            }
+            
+            
         },
         async signUp(email, password, role) {
 
@@ -56,14 +67,17 @@ export const useAuthStore = defineStore({
             if(response.status !== 201 ){
                 const alertStore = useAlertStore();
                 let errors = responseJson.error != null ? responseJson.error: responseJson.errors
+                alertStore.error(errors);
                 return;
             }
 
             router.push(this.returnUrl || '/');
         },
         logout() {
-            this.user = null;
+            this.user_id = null;
+            this.role = null;
             localStorage.removeItem('user_id');
+            localStorage.removeItem('role');
             router.push('/');
         }
     }
