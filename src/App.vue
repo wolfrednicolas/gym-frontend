@@ -1,12 +1,14 @@
 <template>
-  <NavComponent/>
+  <NavComponent v-if="authStore.role == 'USER'"/>
   <AlertComponent />
   <router-view/>
 </template>
 
 <script setup>
 import { NavComponent, AlertComponent } from '@/components';
+import { useAuthStore } from '@/stores';
 
+const authStore = useAuthStore();
 
 </script>
 
