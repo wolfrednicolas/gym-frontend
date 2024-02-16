@@ -1,25 +1,45 @@
 <template>
     <div class="welcome container">
-      <div class="notLogin"> <!--preguntar si esta no esta logueado-->
+      <div class="notLogin" v-if="authStore.user_id == null">
         <p>Welcome</p>
         <div v-if="showLogin">
           <LoginSignUpComponent type="Login" />
-          <p>not account yet? <span @click="showLogin = false"><a>SignUp</a></span></p>
+          <p>not account yet? <span @click="changeView(false)"><a>SignUp</a></span></p>
         </div>
         <div v-else>
           <LoginSignUpComponent type="Sign Up"/>
-          <p>Already have an account <span @click="showLogin = true"><a>Login</a></span></p>
+          <p>Already have an account <span @click="changeView(true)"><a>Login</a></span></p>
         </div>
-      </div>  
+      </div>
     </div>
 </template>
 
 
 <script setup>
 import {LoginSignUpComponent} from '@/components';
-import { ref } from 'vue';
+import { ref, onMounted, defineProps } from 'vue';
+import { useAuthStore } from '@/stores';
 
- const showLogin = ref("true");
+const authStore = useAuthStore();
+
+
+const props = defineProps(['showLogin'])
+let showLogin = ref("true");
+
+
+const changeView = (value) =>{
+  showLogin.value = value; 
+
+}
+const init = () => {
+  showLogin.value = props.showLogin;
+};
+
+
+
+onMounted(() => {
+  init();
+});
 
 </script>
 
