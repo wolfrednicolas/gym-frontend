@@ -153,7 +153,7 @@
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
                 <svg class="bi"><use xlink:href="#people"/></svg>
-                Customers
+                <span @click="changeView('Customers')">Customers</span>
               </a>
             </li>
             <li class="nav-item">
@@ -215,7 +215,7 @@
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
                 <svg class="bi"><use xlink:href="#door-closed"/></svg>
-                Sign out
+                <span @click="authStore.logout()">Sign out</span>
               </a>
             </li>
           </ul>
@@ -238,7 +238,8 @@
         </div>
       </div>
 
-      <DashboardChart/>
+      <DashboardChart v-show="show == 'Dashboard'"/>
+      <UsersView :customers="customers" v-show="show == 'Customers'"/>
 
       <h2>Section title</h2>
       <div class="table-responsive small">
@@ -376,6 +377,26 @@
 
 <script setup>
 import DashboardChart from '@/views/admin/dashboard/DashboardChart.vue';
+import UsersView from '@/views/admin/UsersView.vue';
+import { useAuthStore } from '@/stores';
+import { ref } from 'vue';
+import { useCustomerStore } from '@/stores';
+
+const customerStore = useCustomerStore();
+
+const authStore = useAuthStore();
+let show = ref("Dashboard");
+let customers = ref(null);
+
+const changeView = async (value) =>{
+  if(value == "Customers"){
+    await customerStore.getAllCustomers();
+    customers.value = customerStore.customers;
+  }
+  show.value = value; 
+
+}
+
 </script>
 
 <style>

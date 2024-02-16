@@ -11,6 +11,7 @@ export const useAuthStore = defineStore({
         // initialize state from local storage to enable user to stay logged in
         user_id: JSON.parse(localStorage.getItem('user_id')),
         role: localStorage.getItem('role'),
+        access_token : localStorage.getItem('access_token'),
         returnUrl: null
     }),
     actions: {
@@ -35,8 +36,10 @@ export const useAuthStore = defineStore({
             
             this.user_id = responseJson.data.user_id;
             this.role = responseJson.data.role;
+            this.access_token = responseJson.data.accessToken;
             localStorage.setItem('user_id', this.user_id);
             localStorage.setItem('role', this.role);
+            localStorage.setItem('access_token', this.access_token);
 
             if(this.role == "ADMIN"){
                 router.push(this.returnUrl || '/admin');
@@ -78,6 +81,7 @@ export const useAuthStore = defineStore({
             this.role = null;
             localStorage.removeItem('user_id');
             localStorage.removeItem('role');
+            localStorage.removeItem('access_token');
             router.push('/');
         }
     }
