@@ -5,11 +5,14 @@ const authStore = useAuthStore();
 </script>
 
 <template>
-    <nav v-show="authStore.user" class="navbar navbar-expand navbar-dark bg-dark">
-        <div class="navbar-nav">
-            <router-link to="/" class="nav-item nav-link">Home</router-link>
-            <!-- <router-link to="/users" class="nav-item nav-link">Users</router-link> -->
-            <button @click="authStore.logout()" class="btn btn-link nav-item nav-link">Logout</button>
-        </div>
-    </nav>
+    <header class="d-flex justify-content-center py-3" >
+      <ul class="nav nav-pills">
+        <router-link to="/" class="nav-item nav-link">Home</router-link>
+        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#" @click="authStore.logout()" class="nav-link">Logout</a></li>
+      </ul>
+    </header>
 </template>
