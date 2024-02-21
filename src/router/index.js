@@ -1,8 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import WelcomeView from '@/views/WelcomeView.vue';
-import DashboardViewAdmin from '@/views/admin/dashboard/DashboardView.vue';
-import DashboardViewUser from '@/views/user/DashboardView.vue';
+// import UsersView from '@/views/admin/users/UsersView';
+// import DashboardChart from '@/views/admin/dashboard/DashboardChart';
+import DashboardViewUser from '@/views/user/DashboardView';
 import {  useAlertStore } from '@/stores';
+import adminRoutes   from '@/router/admin.routes';
+
 
 const routes = [
   {
@@ -22,11 +25,7 @@ const routes = [
     name:'users',
     component: DashboardViewUser,
   },
-  {
-    path:'/admin',
-    name:'admin',
-    component: DashboardViewAdmin,
-  },
+  ...adminRoutes,
   {
     path: '/:pathMatch(.*)*',
     redirect: '/' 

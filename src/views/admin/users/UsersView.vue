@@ -43,7 +43,7 @@
                 </td>
                 <td>
                   <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                    <li><a href="#" class="text-primary" data-toggle="tooltip" title="" data-original-title="view">View<i class="far fa-eye"></i></a></li>
+                    <li><router-link :to="'/admin/customers/' + user.id">View</router-link></li>
                     <li><a href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit">Edit<i class="fas fa-pencil-alt"></i></a></li>
                     <li><a href="#" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete">Delete<i class="far fa-trash-alt"></i></a></li>
                   </ul>
@@ -71,9 +71,16 @@
 </div>
 </template>
 <script setup>
-import { defineProps } from 'vue';
-const props = defineProps(['customers'])
-console.log(props.customers)
+import { useCustomerStore } from '@/stores';
+import { ref, onBeforeMount } from 'vue';
+let customers = ref(null);
+const customerStore = useCustomerStore();
+
+
+onBeforeMount(async()  => {
+  await customerStore.getAllCustomers();
+  customers.value = customerStore.customers;
+})
 
 </script>
 <style>

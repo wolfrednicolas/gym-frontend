@@ -12,8 +12,7 @@
         </nav>
       </div>
     </div>
-
-    <div class="row">
+    <div class="row" v-if="user !== null">
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
@@ -72,7 +71,7 @@
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
+                <p class="text-muted mb-0">{{ user.email }}</p>
               </div>
             </div>
             <hr>
@@ -178,6 +177,21 @@
 </section>
 </template>
 <script setup>
+import { defineProps } from 'vue';
+import { useCustomerStore } from '@/stores';
+import { ref, onBeforeMount } from 'vue';
+let user = ref(null);
+const customerStore = useCustomerStore();
+const props = defineProps(['id'])
+
+
+onBeforeMount(async()  => {
+  await customerStore.getCustomer(props.id);
+  user.value = customerStore.customer;
+})
+
+
+
 </script>
 <style>
 </style>
