@@ -135,7 +135,7 @@
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
                 <svg class="bi"><use xlink:href="#house-fill"/></svg>
-                Dashboard
+                <span @click="changeView('Dashboard')">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
@@ -377,7 +377,7 @@
 
 <script setup>
 import DashboardChart from '@/views/admin/dashboard/DashboardChart.vue';
-import UsersView from '@/views/admin/UsersView.vue';
+import UsersView from '@/views/admin/users/UsersView.vue';
 import { useAuthStore } from '@/stores';
 import { ref } from 'vue';
 import { useCustomerStore } from '@/stores';

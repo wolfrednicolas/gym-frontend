@@ -43,9 +43,9 @@
                 </td>
                 <td>
                   <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                    <li><a href="#" class="text-primary" data-toggle="tooltip" title="" data-original-title="view"><i class="far fa-eye"></i></a></li>
-                    <li><a href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
-                    <li><a href="#" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                    <li><a href="#" class="text-primary" data-toggle="tooltip" title="" data-original-title="view">View<i class="far fa-eye"></i></a></li>
+                    <li><a href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit">Edit<i class="fas fa-pencil-alt"></i></a></li>
+                    <li><a href="#" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete">Delete<i class="far fa-trash-alt"></i></a></li>
                   </ul>
                 </td>
                 </tr>
