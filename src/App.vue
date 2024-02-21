@@ -1,12 +1,25 @@
-<template>
-  <NavComponent v-if="authStore.role == 'USER'"/>
-  <AlertComponent />
-  <router-view/>
+<template >
+  <div v-if="authStore.role == 'USER'">
+    <NavComponent />
+    <AlertComponent />
+    <router-view/>
+  </div>
+  <div v-if="authStore.role == 'ADMIN'">
+    <DashboardAdminComponent />
+  </div>
+  <div v-if="authStore.role == null">
+    <AlertComponent />
+    <router-view/>
+  </div>
+    
+
 </template>
 
 <script setup>
 import { NavComponent, AlertComponent } from '@/components';
 import { useAuthStore } from '@/stores';
+import DashboardAdminComponent from './components/DashboardAdminComponent.vue';
+// import { DashboardView } from '@/views/admin/dashboard/DashboardView.vue';
 
 const authStore = useAuthStore();
 

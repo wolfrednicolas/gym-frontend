@@ -19,7 +19,6 @@ export const useAuthStore = defineStore({
             const body = {
                 email: email, password: password
             }
-            console.log(body)
             const requestOptions = {
                 method: "POST",
                 headers: { "Content-Type": "application/json", "Accept": "application/json"},
@@ -57,7 +56,6 @@ export const useAuthStore = defineStore({
             const body = {
                 email: email, password: password, role: role
             }
-            console.log(body)
             const requestOptions = {
                 method: "POST",
                 headers: { "Content-Type": "application/json", "Accept": "application/json"},

@@ -16,7 +16,6 @@ const loginCallback = async (email, password) => {
     const response = await fetch("http://localhost:8080/api/login", requestOptions);
     const responseText = await response.text()
     const responseJson = JSON.parse(responseText);
-    console.log(responseJson);
     if(response.status !== 200 ){
         errors.value =  responseJson.error;
     }
