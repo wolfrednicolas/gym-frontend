@@ -3,11 +3,11 @@
       <div class="notLogin" v-if="authStore.user_id == null">
         <p>Welcome</p>
         <div v-if="showLogin">
-          <LoginSignUpComponent type="Login" />
+          <LoginView/>
           <p>not account yet? <span @click="changeView(false)"><a>SignUp</a></span></p>
         </div>
         <div v-else>
-          <LoginSignUpComponent type="Sign Up"/>
+          <SignUpView/>
           <p>Already have an account <span @click="changeView(true)"><a>Login</a></span></p>
         </div>
       </div>
@@ -16,9 +16,10 @@
 
 
 <script setup>
-import {LoginSignUpComponent} from '@/components';
 import { ref, onMounted, defineProps } from 'vue';
 import { useAuthStore } from '@/stores';
+import LoginView from './LoginView.vue';
+import SignUpView from './SignUpView.vue';
 
 const authStore = useAuthStore();
 

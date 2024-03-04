@@ -15,6 +15,17 @@ export const useAuthStore = defineStore({
         returnUrl: null
     }),
     actions: {
+        async getEmail(email) {
+
+            const requestOptions = {
+                method: "GET",
+                headers: { "Content-Type": "application/json", "Accept": "application/json"},
+              };
+            const response = await fetch(baseUrl+"/check/availableEmail/"+email, requestOptions);
+            const responseText = await response.text()
+            const responseJson = JSON.parse(responseText);
+            return responseJson.data;
+        },
         async login(email, password) {
             const body = {
                 email: email, password: password
