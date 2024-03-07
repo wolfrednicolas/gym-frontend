@@ -71,15 +71,15 @@
 </div>
 </template>
 <script setup>
-import { useCustomerStore } from '@/stores';
+import { useAdminStore } from '@/stores';
 import { ref, onBeforeMount } from 'vue';
 let customers = ref(null);
-const customerStore = useCustomerStore();
+const adminStore = useAdminStore();
 
 
 onBeforeMount(async()  => {
-  await customerStore.getAllCustomers();
-  customers.value = customerStore.customers;
+  await adminStore.getAllCustomers();
+  customers.value = adminStore.customers;
 })
 
 </script>

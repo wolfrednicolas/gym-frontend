@@ -178,16 +178,16 @@
 </template>
 <script setup>
 import { defineProps } from 'vue';
-import { useCustomerStore } from '@/stores';
+import { useAdminStore } from '@/stores';
 import { ref, onBeforeMount } from 'vue';
 let user = ref(null);
-const customerStore = useCustomerStore();
+const adminStore = useAdminStore();
 const props = defineProps(['id'])
 
 
 onBeforeMount(async()  => {
-  await customerStore.getCustomer(props.id);
-  user.value = customerStore.customer;
+  await adminStore.getCustomer(props.id);
+  user.value = adminStore.customer;
 })
 
 
